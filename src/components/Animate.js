@@ -85,7 +85,7 @@ function App({Stag,setStag, SubStag,setSubStag,Gold, setGold,KnightInfo,setKnigh
             var isCrit = chance(KnightInfo.critChance)
             var isDoge = chance(KnightInfo.doge)
             if(isCrit){
-              ListEnemy[0].hp = ListEnemy[0].hp - ((KnightInfo.att * KnightInfo.critDmg / 100) - ListEnemy[0].def)
+              ListEnemy[0].hp = ListEnemy[0].hp - (KnightInfo.att + (KnightInfo.att * KnightInfo.critDmg / 100) - ListEnemy[0].def)
             }else{
               ListEnemy[0].hp = ListEnemy[0].hp - (KnightInfo.att - ListEnemy[0].def)
             }
