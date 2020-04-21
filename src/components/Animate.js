@@ -1,9 +1,18 @@
 import React , { useEffect, useState , useCallback} from 'react';
 import Knight from './Knight'
 import Enemy from './Enemy'
-import enemy from '../assets/images/monster.png'
+import enemy1 from '../assets/images/monster.png'
+import enemy2 from '../assets/images/animal-1.gif'
+import enemy3 from '../assets/images/animal-2.gif'
+import enemy4 from '../assets/images/animal-3.gif'
 import chance from './chanceHelper'
 
+var listImg = [
+  enemy1,
+  enemy2,
+  enemy3,
+  enemy4,
+]
 
 function App({Stag,setStag, SubStag,setSubStag,Gold, setGold,KnightInfo,setKnightInfo}) {
   const [BGPosition, setBGPosition] = useState(0)  
@@ -12,7 +21,6 @@ function App({Stag,setStag, SubStag,setSubStag,Gold, setGold,KnightInfo,setKnigh
   
   const [ListEnemy, setListEnemy] = useState([])
   const [BaseEnemy, setBaseEnemy] = useState({
-    img:enemy,
     hp:1000,
     totalHP:1000,
     att:100,
@@ -23,8 +31,9 @@ function App({Stag,setStag, SubStag,setSubStag,Gold, setGold,KnightInfo,setKnigh
   const createListEnemy = useCallback(()=>{
     var newList = []
     for (let index = 0; index < 6; index++) {
+      var randomNumber = Math.round(Math.random() * listImg.length)
       newList.push({
-        img:enemy,
+        img:listImg[randomNumber],
         hp:BaseEnemy.hp + (BaseEnemy.hp * Stag * 10 / 100),
         totalHP:BaseEnemy.totalHP + (BaseEnemy.totalHP * Stag * 10 / 100),
         att:BaseEnemy.att + ((BaseEnemy.att * Stag * 10 / 100)),
@@ -33,7 +42,6 @@ function App({Stag,setStag, SubStag,setSubStag,Gold, setGold,KnightInfo,setKnigh
       })
     }
     setBaseEnemy({
-      img:enemy,
       hp:BaseEnemy.hp + (BaseEnemy.hp * Stag * 10 / 100),
       totalHP:BaseEnemy.totalHP + (BaseEnemy.totalHP * Stag * 10 / 100),
       att:BaseEnemy.att + ((BaseEnemy.att * Stag * 10 / 100)),
